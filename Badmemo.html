@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10초마다 지워지는 프로그램</title>
+  <style>
+    #circle {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      background-color: pink;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+
+<div id="circle"></div>
+<input type="text" id="userInput" placeholder="텍스트를 입력하세요">
+
+<script>
+  function updateText() {
+    const circle = document.getElementById('circle');
+    const userInput = document.getElementById('userInput').value;
+
+    // 이전에 추가된 텍스트 요소 삭제
+    const existingText = document.querySelector('.dynamic-text');
+    if (existingText) {
+      circle.removeChild(existingText);
+    }
+
+    // 새로운 텍스트 요소 추가
+    const text = document.createElement('p');
+    text.innerHTML = userInput;
+    text.className = 'dynamic-text';
+    text.style.color = 'white';
+    text.style.position = 'absolute';
+    text.style.top = '50%';
+    text.style.transform = 'translateY(-50%)';
+    circle.appendChild(text);
+
+    // 10초 후 텍스트 삭제
+    setTimeout(() => {
+      circle.removeChild(text);
+    }, 10000);
+  }
+
+  // 10초마다 updateText 함수 호출
+  setInterval(updateText, 10000);
+</script>
+
+</body>
+</html>
