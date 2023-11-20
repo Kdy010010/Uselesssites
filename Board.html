@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>간단한 게시판</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    #board {
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .post {
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="board">
+    <h1>간단한 게시판</h1>
+    <form id="postForm">
+      <label for="author">작성자:</label>
+      <input type="text" id="author" required>
+      <br>
+      <label for="message">내용:</label>
+      <textarea id="message" rows="4" required></textarea>
+      <br>
+      <button type="button" onclick="addPost()">게시물 작성</button>
+    </form>
+
+    <div id="posts"></div>
+  </div>
+
+  <script>
+    function addPost() {
+      var authorInput = document.getElementById('author');
+      var messageInput = document.getElementById('message');
+      var postsContainer = document.getElementById('posts');
+
+      var author = authorInput.value;
+      var message = messageInput.value;
+
+      if (author && message) {
+        var postDiv = document.createElement('div');
+        postDiv.className = 'post';
+
+        var postContent = '<strong>' + author + ':</strong> ' + message;
+        postDiv.innerHTML = postContent;
+
+        postsContainer.appendChild(postDiv);
+
+        // Clear the input fields
+        authorInput.value = '';
+        messageInput.value = '';
+      } else {
+        alert('작성자와 내용을 모두 입력하세요.');
+      }
+    }
+  </script>
+</body>
+</html>
