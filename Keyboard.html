@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>간단한 키보드</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .keyboard {
+            display: grid;
+            grid-template-columns: repeat(10, 40px);
+            gap: 5px;
+        }
+
+        .key {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="keyboard" id="keyboard">
+        <div class="key" onclick="handleKeyPress('1')">1</div>
+        <div class="key" onclick="handleKeyPress('2')">2</div>
+        <div class="key" onclick="handleKeyPress('3')">3</div>
+        <div class="key" onclick="handleKeyPress('4')">4</div>
+        <div class="key" onclick="handleKeyPress('5')">5</div>
+        <div class="key" onclick="handleKeyPress('6')">6</div>
+        <div class="key" onclick="handleKeyPress('7')">7</div>
+        <div class="key" onclick="handleKeyPress('8')">8</div>
+        <div class="key" onclick="handleKeyPress('9')">9</div>
+        <div class="key" onclick="handleKeyPress('0')">0</div>
+    </div>
+
+    <script>
+        function handleKeyPress(key) {
+            alert("키보드 입력: " + key);
+            // 여기에 원하는 동작을 추가할 수 있습니다.
+        }
+    </script>
+</body>
+</html>
