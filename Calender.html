@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #calendar {
+      border: 1px solid #ccc;
+      max-width: 300px;
+    }
+
+    .header {
+      background-color: #f2f2f2;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+    }
+
+    .day {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .today {
+      background-color: #4caf50;
+      color: white;
+    }
+  </style>
+  <title>간단한 웹 달력</title>
+</head>
+<body>
+  <div id="calendar"></div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const calendar = document.getElementById('calendar');
+
+      function generateCalendar(year, month) {
+        const firstDay = new Date(year, month, 1);
+        const lastDay = new Date(year, month + 1, 0);
+
+        const header = document.createElement('div');
+        header.className = 'header';
+        header.textContent = `${firstDay.toLocaleString('default', { month: 'long' })} ${year}`;
+
+        const days = document.createElement('div');
+        days.className = 'days';
+
+        for (let i = 0; i < firstDay.getDay(); i++) {
+          const emptyDay = document.createElement('div');
+          emptyDay.className = 'day';
+          days.appendChild(emptyDay);
+        }
+
+        for (let i = 1; i <= lastDay.getDate(); i++) {
+          const day = document.createElement('div');
+          day.className = 'day';
+          day.textContent = i;
+
+          if (year === new Date().getFullYear() && month === new Date().getMonth() && i === new Date().getDate()) {
+            day.classList.add('today');
+          }
+
+          days.appendChild(day);
+        }
+
+        calendar.innerHTML = '';
+        calendar.appendChild(header);
+        calendar.appendChild(days);
+      }
+
+      const currentDate = new Date();
+      generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+    });
+  </script>
+</body>
+</html>
