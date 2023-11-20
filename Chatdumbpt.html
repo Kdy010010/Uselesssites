@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>간단한 챗봇</title>
+    <style>
+        #chat-container {
+            height: 300px;
+            overflow-y: scroll;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="chat-container"></div>
+<input type="text" id="user-input" placeholder="메시지를 입력하세요...">
+<button onclick="sendMessage()">전송</button>
+
+<script>
+    const chatContainer = document.getElementById('chat-container');
+    const userInput = document.getElementById('user-input');
+
+    function sendMessage() {
+        const userMessage = userInput.value;
+        displayMessage('user', userMessage);
+        // 여기에 AI 응답 로직을 추가할 수 있습니다.
+        // 예: displayMessage('bot', 'AI가 응답합니다.');
+        userInput.value = ''; // 입력 필드 초기화
+    }
+
+    function displayMessage(sender, message) {
+        const messageElement = document.createElement('div');
+        messageElement.textContent = `${sender}: ${message}`;
+        chatContainer.appendChild(messageElement);
+    }
+</script>
+
+</body>
+</html>
